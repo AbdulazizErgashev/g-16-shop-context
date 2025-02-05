@@ -12,13 +12,13 @@ export default function Products() {
             key={mahsulot.id}
             className="relative flex flex-col items-center shadow-lg rounded-md p-10"
           >
-            <span className="absolute left-0 top-0 px-10">{mahsulot.skidka}</span>
+            <span className="absolute left-0 top-0 px-5 py-1 bg-red-500 text-white font-asul font-semibold rounded-md">{mahsulot.skidka}</span>
             <img src={mahsulot.img} />
-            <div>
-              <h1>{mahsulot.title}</h1>
-              <div className="space-x-1">
-                <span className="line-through">{mahsulot.oldPrice}</span>
-                <span>{mahsulot.newPrice}</span>
+            <div className="w-full flex flex-col items-center">
+              <h1 className="font-asul font-bold text-xl text-green-700">{mahsulot.title}</h1>
+              <div className="flex items-center gap-x-5">
+                <span className="line-through font-asul font-bold text-red-500">{mahsulot.oldPrice}</span>
+                <span className="font-asul font-bold text-green-700">{mahsulot.newPrice}</span>
               </div>
             </div>
             <div className="flex items-center justify-between w-full">
