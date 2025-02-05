@@ -10,14 +10,14 @@ export default function Navbar() {
 
   return (
     <main className="shadow-md bg-white">
-      <nav className="flex items-center justify-between max-w-screen-lg mx-auto py-5 text-green-700">
+      <nav className="flex items-center justify-between max-w-screen-lg mx-auto py-5 px-5 md:px-0 text-green-700">
         <div
           onClick={() => navigate("/")}
           className="cursor-pointer text-2xl font-sans font-bold"
         >
           Logo
         </div>
-        <ul className="flex items-center gap-x-10 text-base font-semibold uppercase tracking-widest">
+        <ul className="hidden md:flex items-center gap-x-10 text-base font-semibold uppercase tracking-widest">
           <li className="flex items-center gap-x-2">
             <FaHome />
             <NavLink to="/">Home</NavLink>
