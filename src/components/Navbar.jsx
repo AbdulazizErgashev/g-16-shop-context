@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { ShopContext } from "../context/Context";
-import { FaHome } from "react-icons/fa";
+import { FaHeart, FaHome } from "react-icons/fa";
 import { FaShop } from "react-icons/fa6";
 import { MdOutlineShoppingCart } from "react-icons/md";
 
@@ -29,6 +29,10 @@ export default function Navbar() {
           <li className="flex items-center gap-x-2">
             <MdOutlineShoppingCart />
             <NavLink to="/cart">Cart</NavLink>
+          </li>
+          <li className="flex items-center gap-x-2">
+            <FaHeart />
+            <NavLink to="/favorites">Favorites</NavLink>
           </li>
         </ul>
       </nav>
