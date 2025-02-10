@@ -5,14 +5,14 @@ import { products } from "../assets/data";
 const Favorite = () => {
   const { navigate, likedProducts } = useContext(ShopContext);
 
-  const favoriteProducts = products.filter((product) =>
-    likedProducts.includes(product.id)
+  const favoriteProducts = products.filter((mahsulotObj) =>
+    likedProducts.includes(mahsulotObj.id)
   );
 
   return (
     <section className="h-screen max-w-screen-lg mx-auto my-10">
       {favoriteProducts.length > 0 ? (
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {favoriteProducts.map((mahsulot) => (
             <div
               key={mahsulot.id}
