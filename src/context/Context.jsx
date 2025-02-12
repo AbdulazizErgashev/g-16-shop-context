@@ -12,11 +12,21 @@ export const ShopProvider = ({ children }) => {
     return storedLikes ? JSON.parse(storedLikes) : [];
   };
 
+  const getStoredCart = () => {
+    const storedCart = localStorage.getItem("addedProductToCart");
+    return storedCart ? JSON.parse(storedCart) : [];
+  };
+
   const [likedProducts, setLikedProducts] = useState(getStoredLikes());
+  const [cart, setCart] = useState(getStoredCart());
 
   useEffect(() => {
     localStorage.setItem("likedProducts", JSON.stringify(likedProducts));
   }, [likedProducts]);
+
+  useEffect(() => {
+    localStorage.setItem("addedProductToCart", JSON.stringify(cart));
+  }, [cart]);
 
   const toggleLike = (productId) => {
     setLikedProducts((likedList) => {
@@ -38,8 +48,30 @@ export const ShopProvider = ({ children }) => {
     });
   };
 
+  const addToCart = (productId) => {
+    setCart((addedCart) => {
+      const updatedCart = addedCart.includes(productId)
+        ? addedCart.filter((id) => id !== productId)
+        : [...addedCart, productId];
+
+      Swal.fire({
+        position: "center",
+        title: addedCart.includes(productId)
+          ? "Product removed from cart"
+          : "Product added to cart successfully",
+        icon: addedCart.includes(productId) ? "error" : "success",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+
+      return updatedCart;
+    });
+  };
+
   return (
-    <ShopContext.Provider value={{ navigate, likedProducts, toggleLike }}>
+    <ShopContext.Provider
+      value={{ navigate, likedProducts, toggleLike, cart, addToCart }}
+    >
       {children}
     </ShopContext.Provider>
   );

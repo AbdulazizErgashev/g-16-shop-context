@@ -1,12 +1,14 @@
 import React, { useContext } from "react";
 import { products } from "../assets/data";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
+import { BiTrash } from "react-icons/bi";
 import { GrShop } from "react-icons/gr";
 import { ShopContext } from "../context/Context";
 
 export default function Products() {
   // useContext hooki yaratilgan context-dan uzatilgan malumotlarni qabul qiladi
-  const { likedProducts, toggleLike } = useContext(ShopContext);
+  const { likedProducts, toggleLike, cart, addToCart } =
+    useContext(ShopContext);
   return (
     <main>
       <section className="h-screen max-w-screen-lg mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 items-center gap-10 my-10">
@@ -40,7 +42,13 @@ export default function Products() {
                   <FaRegHeart />
                 )}
               </button>
-              <GrShop />
+              <button onClick={() => addToCart(mahsulot.id)}>
+                {cart.includes(mahsulot.id) ? (
+                  <BiTrash className="text-red-500 text-xl" />
+                ) : (
+                  <GrShop />
+                )}
+              </button>
             </div>
           </div>
         ))}

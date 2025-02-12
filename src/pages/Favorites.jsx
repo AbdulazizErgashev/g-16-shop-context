@@ -1,9 +1,10 @@
 import { useContext } from "react";
 import { ShopContext } from "../context/Context";
 import { products } from "../assets/data";
+import { FaHeart, FaRegHeart } from "react-icons/fa";
 
 const Favorite = () => {
-  const { navigate, likedProducts } = useContext(ShopContext);
+  const { navigate, likedProducts, toggleLike } = useContext(ShopContext);
 
   const favoriteProducts = products.filter((mahsulotObj) =>
     likedProducts.includes(mahsulotObj.id)
@@ -21,6 +22,16 @@ const Favorite = () => {
               <span className="absolute left-0 top-0 px-5 py-1 bg-red-500 text-white font-asul font-semibold rounded-md">
                 {mahsulot.skidka}
               </span>
+              <button
+                onClick={() => toggleLike(mahsulot.id)}
+                className="absolute right-0 top-0 px-3 py-1"
+              >
+                {likedProducts.includes(mahsulot.id) ? (
+                  <FaHeart className="text-red-500" />
+                ) : (
+                  <FaRegHeart />
+                )}
+              </button>
               <img src={mahsulot.img} />
               <div className="w-full flex flex-col items-center">
                 <h1 className="font-asul font-bold text-xl text-green-700">
