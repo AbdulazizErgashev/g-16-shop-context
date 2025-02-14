@@ -1,15 +1,16 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { ShopContext } from "../context/Context";
 import { FaHeart, FaHome } from "react-icons/fa";
 import { FaShop } from "react-icons/fa6";
 import { MdOutlineShoppingCart } from "react-icons/md";
+import NavbarMobile from "./NavbarMobile";
 
 export default function Navbar() {
-  const { navigate } = useContext(ShopContext);
+  const { navigate, toggleNav, toggleNavbar } = useContext(ShopContext);
 
   return (
-    <main className="shadow-md bg-white">
+    <main className="shadow-md bg-white relative">
       <nav className="flex items-center justify-between max-w-screen-lg mx-auto py-5 px-5 md:px-0 text-green-700">
         <div
           onClick={() => navigate("/")}
@@ -35,7 +36,11 @@ export default function Navbar() {
             <NavLink to="/favorites">Favorites</NavLink>
           </li>
         </ul>
+        <button className="md:hidden text-2xl" onClick={toggleNavbar}>
+          &#9776;
+        </button>
       </nav>
+      {toggleNav && <NavbarMobile />}
     </main>
   );
 }

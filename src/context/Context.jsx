@@ -17,8 +17,11 @@ export const ShopProvider = ({ children }) => {
     return storedCart ? JSON.parse(storedCart) : [];
   };
 
+  const [toggleNav, setToggleNav] = useState(false);
   const [likedProducts, setLikedProducts] = useState(getStoredLikes());
   const [cart, setCart] = useState(getStoredCart());
+
+  const toggleNavbar = () => setToggleNav(!toggleNav);
 
   useEffect(() => {
     localStorage.setItem("likedProducts", JSON.stringify(likedProducts));
@@ -70,7 +73,15 @@ export const ShopProvider = ({ children }) => {
 
   return (
     <ShopContext.Provider
-      value={{ navigate, likedProducts, toggleLike, cart, addToCart }}
+      value={{
+        navigate,
+        likedProducts,
+        toggleLike,
+        cart,
+        addToCart,
+        toggleNav,
+        toggleNavbar,
+      }}
     >
       {children}
     </ShopContext.Provider>

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { products } from "../assets/data";
 import { ShopContext } from "../context/Context";
 import { BiTrash } from "react-icons/bi";
@@ -11,20 +11,20 @@ export default function Cart() {
   );
 
   return (
-    <section className="h-screen max-w-screen-lg mx-auto my-10">
+    <section className="min-h-screen max-w-screen-lg mx-auto py-10">
       {addedProducts.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {addedProducts.map((mahsulot) => (
             <div
               key={mahsulot.id}
-              className="relative flex flex-col items-center shadow-lg rounded-md p-10"
+              className="relative flex flex-col items-center shadow-lg rounded-lg p-6 bg-white"
             >
-              <span className="absolute left-0 top-0 px-5 py-1 bg-red-500 text-white font-asul font-semibold rounded-md">
+              <span className="absolute left-2 top-2 px-3 py-1 bg-red-500 text-white text-sm font-semibold rounded">
                 {mahsulot.skidka}
               </span>
               <button
                 onClick={() => addToCart(mahsulot.id)}
-                className="absolute right-0 top-0 px-3 py-1"
+                className="absolute right-2 top-2 p-2 bg-gray-200 rounded-full hover:bg-gray-300"
               >
                 {cart.includes(mahsulot.id) ? (
                   <BiTrash className="text-red-500 text-xl" />
@@ -32,16 +32,16 @@ export default function Cart() {
                   <GrShop />
                 )}
               </button>
-              <img src={mahsulot.img} />
-              <div className="w-full flex flex-col items-center">
-                <h1 className="font-asul font-bold text-xl text-green-700">
+              <img src={mahsulot.img} className="object-cover" />
+              <div className="w-full flex flex-col items-center mt-4">
+                <h1 className="text-lg font-bold text-green-700">
                   {mahsulot.title}
                 </h1>
-                <div className="flex items-center gap-x-5">
-                  <span className="line-through font-asul font-bold text-red-500">
+                <div className="flex items-center gap-x-3 mt-2">
+                  <span className="line-through text-red-500 font-bold">
                     {mahsulot.oldPrice}
                   </span>
-                  <span className="font-asul font-bold text-green-700">
+                  <span className="text-green-700 font-bold">
                     {mahsulot.newPrice}
                   </span>
                 </div>
@@ -51,7 +51,7 @@ export default function Cart() {
         </div>
       ) : (
         <p
-          className="text-green-500 font-asul text-center cursor-pointer"
+          className="text-green-500 text-center text-lg cursor-pointer mt-10"
           onClick={() => navigate("/products")}
         >
           No added products yet.
