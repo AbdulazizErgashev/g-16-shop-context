@@ -8,3 +8,7 @@ ul li a.active {
   border-bottom: 2px solid #15803d;
   padding-bottom: 3px;
 }
+
+body {
+  user-select: none;
+}
